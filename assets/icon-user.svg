@@ -1,0 +1,7 @@
+<svg id="icon-user" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="person">
+    <rect id="Rectángulo_301" data-name="Rectángulo 301" width="30" height="30" fill="#fff" opacity="0"/>
+    <path id="Trazado_358" data-name="Trazado 358" d="M13,13A5,5,0,1,0,8,8,5,5,0,0,0,13,13Zm0-7.5A2.5,2.5,0,1,1,10.5,8,2.5,2.5,0,0,1,13,5.5Z" transform="translate(2 0.75)" fill="#fff"/>
+    <path id="Trazado_359" data-name="Trazado 359" d="M13.75,13A8.75,8.75,0,0,0,5,21.75a1.25,1.25,0,0,0,2.5,0,6.25,6.25,0,0,1,12.5,0,1.25,1.25,0,0,0,2.5,0A8.75,8.75,0,0,0,13.75,13Z" transform="translate(1.25 3.25)" fill="#fff"/>
+  </g>
+</svg>

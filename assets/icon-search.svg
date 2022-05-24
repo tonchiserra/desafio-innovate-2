@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90" height="90" viewBox="0 0 90 90">
+  <defs>
+    <filter id="Rectángulo_306" x="0" y="0" width="90" height="90" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="icon-search" transform="translate(30 20)">
+    <g id="search">
+      <g transform="matrix(1, 0, 0, 1, -30, -20)" filter="url(#Rectángulo_306)">
+        <rect id="Rectángulo_306-2" data-name="Rectángulo 306" width="30" height="30" transform="translate(30 20)" fill="#fff" opacity="0"/>
+      </g>
+      <path id="Trazado_366" data-name="Trazado 366" d="M25.137,23.363l-4.25-4.238A9.9,9.9,0,0,0,23,13,10,10,0,1,0,13,23a9.9,9.9,0,0,0,6.125-2.113l4.238,4.25a1.255,1.255,0,1,0,1.775-1.775ZM5.5,13A7.5,7.5,0,1,1,13,20.5,7.5,7.5,0,0,1,5.5,13Z" transform="translate(0.75 0.75)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
