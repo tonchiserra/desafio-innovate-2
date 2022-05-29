@@ -10,18 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     template: function(props){ //estas props son el state que le paso por parametro en el metodo render de la clase
       if(props.products.length < 1) return
       
-      /*let allProductCards = props.products.map(product => {
+      let allProductCards = props.products.map(product => {
         const productCard = new ProductCard({
-          state: { product: product, variant: product.variants[0] },
+          state: { product: product, variant: product.variants[0] }
         })
 
         return productCard.createTemplate()
-      }).join("")*/
+      }).join("")
 
-      //////////////////////////
-      let allProductCards = props.products.map(product => `<product-card state="${{ product: product, variant: product.variants[0] }}"></product-card>`).join("")
-      /////////////////////////
-            
       return allProductCards
     }
   })

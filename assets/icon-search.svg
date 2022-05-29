@@ -1,19 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90" height="90" viewBox="0 0 90 90">
-  <defs>
-    <filter id="Rectángulo_306" x="0" y="0" width="90" height="90" filterUnits="userSpaceOnUse">
-      <feOffset dy="10" input="SourceAlpha"/>
-      <feGaussianBlur stdDeviation="10" result="blur"/>
-      <feFlood flood-opacity="0.051"/>
-      <feComposite operator="in" in2="blur"/>
-      <feComposite in="SourceGraphic"/>
-    </filter>
-  </defs>
-  <g id="icon-search" transform="translate(30 20)">
-    <g id="search">
-      <g transform="matrix(1, 0, 0, 1, -30, -20)" filter="url(#Rectángulo_306)">
-        <rect id="Rectángulo_306-2" data-name="Rectángulo 306" width="30" height="30" transform="translate(30 20)" fill="#fff" opacity="0"/>
-      </g>
-      <path id="Trazado_366" data-name="Trazado 366" d="M25.137,23.363l-4.25-4.238A9.9,9.9,0,0,0,23,13,10,10,0,1,0,13,23a9.9,9.9,0,0,0,6.125-2.113l4.238,4.25a1.255,1.255,0,1,0,1.775-1.775ZM5.5,13A7.5,7.5,0,1,1,13,20.5,7.5,7.5,0,0,1,5.5,13Z" transform="translate(0.75 0.75)" fill="#fff"/>
-    </g>
-  </g>
+<svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.677 16.607L9.96198 10.891C7.41965 12.6985 3.91642 12.2564 1.90285 9.87395C-0.110711 7.49153 0.0371394 3.96361 2.24298 1.75802C4.44824 -0.448534 7.97651 -0.597024 10.3594 1.41644C12.7422 3.42989 13.1846 6.93347 11.377 9.47602L17.092 15.192L15.678 16.606L15.677 16.607ZM6.48498 2.00001C4.58868 1.99958 2.95267 3.3307 2.56745 5.18745C2.18224 7.04421 3.15369 8.91629 4.89366 9.67026C6.63362 10.4242 8.66388 9.85285 9.75522 8.30207C10.8466 6.75129 10.699 4.64734 9.40198 3.26402L10.007 3.86402L9.32498 3.18402L9.31298 3.17202C8.56477 2.4192 7.54637 1.99715 6.48498 2.00001Z" fill="#ffffff"/>
 </svg>
