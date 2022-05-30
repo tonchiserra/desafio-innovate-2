@@ -31,23 +31,49 @@ export class ProductCard {
   createTemplate(){
     let template = `
       <article class="product-card" id="${this.state.product.id}">
+        <svg class="fav-btn" xmlns="http://www.w3.org/2000/svg" width="21.151" height="28.022" viewBox="0 0 21.151 28.022">
+          <path id="Icon_weather-lightning" data-name="Icon weather-lightning" d="M9.552,35.114h.588L20.5,19.777q.2-.407-.226-.407H16l4.5-8.211c.136-.271.03-.407-.3-.407h-5.74a.547.547,0,0,0-.437.271L9.838,22.172c-.03.271.06.407.286.407h4.143Zm12.806-9.536h.407l7.864-11.555a.343.343,0,0,0,.06-.3c-.03-.075-.121-.105-.256-.105H27.269l3.284-6.071q.271-.452-.271-.452H26.154a.486.486,0,0,0-.452.286l-3.134,8.256a.325.325,0,0,0,.015.316.335.335,0,0,0,.286.105h3.073Z" transform="translate(-9.552 -7.092)" fill="#fff"/>
+        </svg>
+    
         <div class="main-carousel">
-          ${this.state.product.images.filter(img => img.alt !== null && img.alt.includes(this.state.variant.option1.toLowerCase())).map(img => `<img src="${img.src}" alt="${img.alt}" width="400" loading="lazy" />`).join("")}
+          ${this.state.product.images.filter(img => img.alt !== null && img.alt.includes(this.state.variant.option1.toLowerCase())).map(img => `<div class="carousel-cell" style="background-image: url(${img.src})"></div>`).join("")}
         </div>
-        ${
-          this.state.product.options.map(op => `
-            <div class="${op.name.toLowerCase()}">
-              ${
-                op.values.map(value => `<button class="option-btn" id="${op.id + value}">${value}</button>`).join("")
+
+        <div class="description-container">
+          <div class="main-description">
+            <p class="product-name">${this.state.product.title}</p>
+            <div class="price-container">
+              ${this.state.variant.compare_at_price 
+                ? `<p>$${this.state.variant.compare_at_price}</p>`
+                : ''
               }
+              <p>$${this.state.variant.price}</p>
             </div>
-          `).join("")
-        }
+          </div>
+
+          ${
+            this.state.product.options.map((op, i) => `
+              <div class="option-container" id="option-container${i}">
+                ${
+                  op.values.map(value => `<button class="option-btn" id="${op.id + value}">${value}</button>`).join("")
+                }
+              </div>
+            `).join("")
+          }
+
+          <div class="product-promos">
+            ${this.state.variant.compare_at_price
+              ? `<p class="off">${Math.round(100 - ((this.state.variant.price * 100) / this.state.variant.compare_at_price))}% OFF</p>`
+              : ''
+            }
+          </div>
+        </div>
       </article>
     `
     return template
   }
 
+  //Recibe como parametro una nueva opcion de 
   changeVariant(newOp) {  
     let op1, op2
 

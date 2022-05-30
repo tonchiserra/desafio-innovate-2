@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafio Innovate #2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/flickity.css" media="screen">
 </head>
 <body>
     <div class="promo"><p>Lanzamientos verano 2022 10% OFF</p></div>
@@ -43,21 +47,23 @@
                     <p>Filtros</p>
                 </div>
     
-                <div class="filter-option"><p>Color</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></div>
-                <div class="filter-option"><p>Tamaño</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></div>
-                <div class="filter-option"><p>Material</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></div>
-                <div class="filter-option"><p>Categorías</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></div>
-                <div class="filter-option"><p>Precio</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></div>
-                <div class="filter-option"><p>Ordenar por</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></div>
+                <button class="filter-option"><p>Color</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></button>
+                <button class="filter-option"><p>Tamaño</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></button>
+                <button class="filter-option"><p>Material</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></button>
+                <button class="filter-option"><p>Categorías</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></button>
+                <button class="filter-option"><p>Precio</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></button>
+                <button class="filter-option"><p>Ordenar por</p><img src="./assets/icon-arrow-01.svg" alt="more" height="20" /></button>
             </nav>
-            <div class="showing">
-                <p>Mostrando n de m productos</p>
+            <div class="showing" id="showing">
+                <!-- <p>Mostrando n de m productos</p> -->
             </div>
         </div>
 
         <section class="products-container" id="products-container">
-
+            
         </section>
+
+        <button id="show-more-btn">Ver más</button>
     </main>
     
     <footer>
@@ -65,5 +71,6 @@
     </footer>
 
     <script type="module" src="./index.js"></script>
+    <script src="./components/flickity.pkgd.js"></script>
 </body>
 </html>

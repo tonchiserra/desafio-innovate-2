@@ -6,11 +6,13 @@ import { ProductCard } from "./components/ProductCard.js";
 document.addEventListener("DOMContentLoaded", () => {
   const app = new App({
     container: "#products-container",
-    state: { products: [] },
-    template: function(props){ //estas props son el state que le paso por parametro en el metodo render de la clase
+    state: { products: [], oldQuantity: 0, newQuantity: 0 },
+    template: function(props){ //estas props las paso por parametro en el metodo render de la clase
       if(props.products.length < 1) return
-      
-      let allProductCards = props.products.map(product => {
+
+      let allProductCards = props.products.filter((product, i) => {
+        if(i >= props.oldQuantity && i < props.newQuantity) return product
+      }).map(product => {
         const productCard = new ProductCard({
           state: { product: product, variant: product.variants[0] }
         })
@@ -23,4 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   app.getAllProducts()
+
+  document.getElementById("show-more-btn").addEventListener("click", () => app.updateQuantity())
 })
