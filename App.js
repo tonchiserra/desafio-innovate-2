@@ -10,6 +10,8 @@ export class App {
     const $container = document.querySelector(this.container)
     if(!$container) return
     $container.innerHTML += this.template(this.state)
+
+    this.createCarousel()
   }
 
   setState(newState){
@@ -20,8 +22,19 @@ export class App {
     document.getElementById("showing").innerHTML = `<p>Mostrando ${this.state.newQuantity > this.state.products.length ? this.state.products.length : this.state.newQuantity} de ${this.state.products.length} productos</p>`
   }
 
-  getState(){
-    return JSON.parse(JSON.stringify(this.state))
+  //Crea el carousel de todos los productos
+  createCarousel(){
+    let prdcts = [...document.getElementById('products-container').children]
+    prdcts.forEach(product => {
+      let el = document.getElementById(`${product.id}carousel`)
+ 
+      if(el.classList.contains('flickity-enabled')) return
+ 
+      const flkty = new Flickity( el, {
+        cellAlign: 'left',
+        contain: true
+      })
+    })
   }
 
   //Actualiza la cantidad de productos que se muestran en pantalla
@@ -41,7 +54,7 @@ export class App {
       if(!response.ok) throw {status: response.status, statusText: response.statusText}
   
       this.setState({ products: products.filter(product => product.status === "active"), oldQuantity: 0, newQuantity: 8 })
-  
+
     }catch(err){
       document.querySelector(this.container).innerHTML = `
         <div class="error-container">

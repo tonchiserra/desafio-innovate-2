@@ -198,10 +198,19 @@ main {
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 999;
 }
 
-.fav-btn > path{
+.fav-btn path{
   fill: #000000;
+}
+
+.fav-btn:hover path{
+  fill: #ffffff;
+}
+
+.fav-btn-clicked{
+  fill: #FF0090 !important;
 }
 
 .main-carousel {
@@ -268,9 +277,15 @@ main {
 
 }
 
+.option-btn .color {
+  width: 15px;
+  height: 15px;
+  border-radius: 100px;
+  border: 1px solid #f4f4f4;
+}
+
 #option-container1 {
   background: rgba(255, 255, 255, .75);
-  background-color: #f30c3a49;
   height: 50px;
   justify-content: center;
   margin: 0;
@@ -285,6 +300,12 @@ main {
   font-size: 1.4rem;
   height: 20px;
   color: #000000;
+  padding: 0 5px;
+}
+
+#option-container1 .option-btn:hover {
+  border: 1px solid #000;
+  border-radius: 15px;
 }
 
 .main-carousel:hover ~ .description-container #option-container1 {
@@ -316,4 +337,11 @@ main {
 #show-more-btn:hover {
   background-color: #000;
   color: #fff;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
 }
