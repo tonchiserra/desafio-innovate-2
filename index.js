@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if(props.products.length < 1) return
 
       let allProductCards = props.products.filter((product, i) => {
-        if(i >= props.oldQuantity && i < props.newQuantity) return product
+        if(i < props.newQuantity) return product
       }).map(product => {
         const productCard = new ProductCard({
           state: { product: product, variant: product.variants[0] }

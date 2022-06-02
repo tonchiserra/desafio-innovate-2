@@ -184,6 +184,7 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--product-width), 1fr));
   gap: 20px;
+  min-height: 100vh;
 }
 
 /* Product Card */
@@ -224,9 +225,16 @@ main {
 .carousel-cell {
   width: 100%;
   height: 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+}
+
+.carousel-cell > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
 }
 
 .description-container {
@@ -295,7 +303,7 @@ main {
   position: absolute;
   top: -50px;
   left: 0;
-  display: none;
+  z-index: -1;
 }
 
 .product-stock {
@@ -322,7 +330,47 @@ main {
 }
 
 .main-carousel:hover ~ .description-container #option-container1 {
+  z-index: 1;
+}
+
+#option-container1:hover {
+  z-index: 1;
+}
+
+.stock-notification-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.stock-notification-container:hover ~ #option-container1 {
+  z-index: 1;
+}
+
+.stock-notification-container button {
+  border: 1px solid #FF0000;
+  background-color: #FF0000;
+  color: #ffffff;
+  border-radius: 19px;
+  width: 100%;
+  height: 40px;
+  margin: 0 25px;
+  transition: all 300ms ease-in-out;
+}
+
+.stock-notification-container button:hover {
+  background-color: #ffffff;
+  color: #FF0000;
+}
+
+.stock-notification-container-actived {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-promos {

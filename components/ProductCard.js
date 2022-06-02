@@ -45,7 +45,8 @@ export class ProductCard {
     let el = document.getElementById(`${this.state.product.id}carousel`)
     const flkty = new Flickity( el, {
       cellAlign: 'left',
-      contain: true
+      contain: true,
+      draggable: false
     })
   }
 
@@ -60,7 +61,7 @@ export class ProductCard {
         </button>
     
         <div class="main-carousel" id="${this.state.product.id}carousel">
-          ${this.state.product.images.filter(img => img.alt !== null && img.alt.includes(this.state.variant.option1.toLowerCase())).map(img => `<div class="carousel-cell" style="background-image: url(${img.src})"></div>`).join("")}
+          ${this.state.product.images.filter(img => img.alt !== null && img.alt.includes(this.state.variant.option1.toLowerCase())).map(img => `<div class="carousel-cell"><img src="${img.src}" alt="Imagen: ${img.alt} no disponible" loading="lazy" /></div>`).join("")}
         </div>
 
         <div class="description-container">
@@ -73,6 +74,10 @@ export class ProductCard {
               }
               <p>$${this.state.variant.price}</p>
             </div>
+          </div>
+
+          <div class="stock-notification-container" id="${this.state.product.id}nostockbtn">
+            <button>NOTIFICARME CUANDO HAYA STOCK</button>
           </div>
 
           ${
@@ -126,20 +131,34 @@ export class ProductCard {
   //Al hacer hover sobre una opcion de tipo talle se muestra si hay o no stock
   showStock(op){
     let pStock = document.getElementById(op.id.slice(0, -(op.id.length - 13)) + 'stock')
+    let btnNotificationStock = document.getElementById(this.state.product.id + 'nostockbtn')
 
-    op.addEventListener("mouseout", () => pStock.innerHTML = '')
+    op.offsetParent.addEventListener("mouseleave", () => {
+      pStock.innerHTML = ''
+
+      btnNotificationStock.addEventListener("mouseover", e => {
+        e.target.classList.add('stock-notification-container-actived')
+        pStock.innerHTML = 'Fuera de stock'
+        pStock.style.color = '#FF0000'
+      })
+
+      btnNotificationStock.addEventListener("mouseleave", e => {
+        e.target.classList.remove('stock-notification-container-actived')
+        pStock.innerHTML = ''
+      })
+
+      btnNotificationStock.classList.remove('stock-notification-container-actived')
+    })
 
     if(this.state.product.variants.filter(v => v.option1 === this.state.variant.option1).find(v => v.option2 === op.textContent)) {
       pStock.innerHTML = 'En stock'
       pStock.style.color = '#2ADB2A'
+      btnNotificationStock.classList.remove('stock-notification-container-actived')
     }else{
       pStock.innerHTML = 'Fuera de stock'
       pStock.style.color = '#FF0000'
+      btnNotificationStock.classList.add('stock-notification-container-actived')
     }
-
-    op.removeEventListener("mouseout", e => {
-      console.log('hola')
-    })
   }
 
   //Retorna 'disabled' en caso de que no exista una variante con el valor del boton del talle y el color actual
@@ -157,7 +176,7 @@ export class ProductCard {
       case 'BLANCO': return "#ffffff"
       case 'CAMEL': return "#c2bb84"
       case 'NATURAL': return "#ebe6be"
-      case 'MULTICOLOR': return ""
+      case 'MULTICOLOR': return "ffffff"
       case 'BEIGE': return "#F5F5DC"
       case 'VERDE': return "#5bbf4f"
       case 'GRIS': return "#bbbbbb"
