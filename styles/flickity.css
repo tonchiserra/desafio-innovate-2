@@ -45,19 +45,17 @@ https://flickity.metafizzy.co
 
 .flickity-button {
   position: absolute;
-  background: hsla(0, 0%, 100%, 0.75);
   border: none;
-  color: #333;
+  color: #000;
 }
 
 .flickity-button:hover {
-  background: white;
   cursor: pointer;
+  opacity: 0.6;
 }
 
 .flickity-button:focus {
   outline: none;
-  box-shadow: 0 0 0 5px #19F;
 }
 
 .flickity-button:active {
@@ -65,7 +63,7 @@ https://flickity.metafizzy.co
 }
 
 .flickity-button:disabled {
-  opacity: 0.3;
+  opacity: 0;
   cursor: auto;
   /* prevent disabled button from capturing pointer up event. #716 */
   pointer-events: none;
@@ -79,8 +77,8 @@ https://flickity.metafizzy.co
 
 .flickity-prev-next-button {
   top: 50%;
-  width: 44px;
-  height: 44px;
+  width: 30px;
+  height: 25px;
   border-radius: 50%;
   /* vertically center */
   transform: translateY(-50%);
@@ -110,28 +108,33 @@ https://flickity.metafizzy.co
 
 .flickity-page-dots {
   position: absolute;
-  width: 100%;
-  bottom: -25px;
+  width: auto;
+  top: 20px;
+  left: 20px;
   padding: 0;
   margin: 0;
   list-style: none;
   text-align: center;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
 .flickity-rtl .flickity-page-dots { direction: rtl; }
 
 .flickity-page-dots .dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 8px;
-  background: #333;
-  border-radius: 50%;
-  opacity: 0.25;
+  width: 6px;
+  height: 6px;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  border-radius: 100px;
   cursor: pointer;
 }
 
 .flickity-page-dots .dot.is-selected {
-  opacity: 1;
+  width: 11px;
+  height: 11px;
 }

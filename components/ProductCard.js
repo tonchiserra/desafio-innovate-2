@@ -6,8 +6,18 @@ export class ProductCard {
       if(e.target.className !== 'option-btn') return
 
       this.state.product.options.forEach(op => {
-        if(e.target.id !== op.id + e.target.textContent) return
-        this.changeVariant(e.target.textContent)
+        if(e.target.id !== op.id + e.target.id.slice(13)) return
+        this.changeVariant(e.target.id.slice(13))
+      })
+    })
+
+    document.addEventListener("mouseover", e => {
+      if(e.target.className !== 'option-btn') return
+
+      this.state.product.options.forEach(op => {
+        if(e.target.id !== op.id + e.target.id.slice(13)) return
+        if(e.target.offsetParent.id !== "option-container1") return
+        this.showStock(e.target)
       })
     })
   }
@@ -30,7 +40,7 @@ export class ProductCard {
     this.createCarousel()
   }
 
-  //Crea el carousel de un producto en especifico
+  //Crea el carousel de un producto en especifico cuando se actualiza su variante
   createCarousel(){
     let el = document.getElementById(`${this.state.product.id}carousel`)
     const flkty = new Flickity( el, {
@@ -69,7 +79,13 @@ export class ProductCard {
             this.state.product.options.map((op, i) => `
               <div class="option-container" id="option-container${i}">
                 ${
-                  op.values.map(value => `<button class="option-btn" id="${op.id + value}">${i === 0 ? `<div class="color" style="background-color: ${this.handleColor(value)}"></div>` : value}</button>`).join("")
+                  i === 1 ? `<p class="product-stock" id="${op.id}stock"></p>` : ''
+                }
+                ${
+                  op.values.map(value => i === 0
+                    ? `<button class="option-btn" id="${op.id + value}" style="background-color: ${this.handleColor(value)}"></button>`
+                    : `<button class="option-btn" id="${op.id + value}" ${this.handleOptionBtn(value)}>${value}</button>`
+                  ).join("")
                 }
               </div>
             `).join("")
@@ -84,12 +100,11 @@ export class ProductCard {
         </div>
       </article>
     `
-
     return template
   }
 
-  //Recibe como parametro una nueva opcion de 
-  changeVariant(newOp) {  
+  //Recibe como parametro una nueva opcion del producto y setea la nueva variante
+  changeVariant(newOp) { 
     let op1, op2
 
     if(this.state.product.variants.find(v => v.option1 === newOp)) {
@@ -106,6 +121,30 @@ export class ProductCard {
     if(!newVariant) newVariant = this.state.product.variants.find(v => v.option1 === op1)
 
     this.setState({ variant: newVariant })
+  }
+
+  //Al hacer hover sobre una opcion de tipo talle se muestra si hay o no stock
+  showStock(op){
+    let pStock = document.getElementById(op.id.slice(0, -(op.id.length - 13)) + 'stock')
+
+    op.addEventListener("mouseout", () => pStock.innerHTML = '')
+
+    if(this.state.product.variants.filter(v => v.option1 === this.state.variant.option1).find(v => v.option2 === op.textContent)) {
+      pStock.innerHTML = 'En stock'
+      pStock.style.color = '#2ADB2A'
+    }else{
+      pStock.innerHTML = 'Fuera de stock'
+      pStock.style.color = '#FF0000'
+    }
+
+    op.removeEventListener("mouseout", e => {
+      console.log('hola')
+    })
+  }
+
+  //Retorna 'disabled' en caso de que no exista una variante con el valor del boton del talle y el color actual
+  handleOptionBtn(value){
+    if(!this.state.product.variants.filter(v => v.option1 === this.state.variant.option1).find(v => v.option2 === value)) return 'disabled'
   }
 
   //Devuelve el div pintado del color que viene en espanol

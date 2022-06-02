@@ -25,15 +25,18 @@ export class App {
   //Crea el carousel de todos los productos
   createCarousel(){
     let prdcts = [...document.getElementById('products-container').children]
-    prdcts.forEach(product => {
+    prdcts.forEach((product, i) => {
       let el = document.getElementById(`${product.id}carousel`)
+
+      if(i >= this.state.oldQuantity && i < this.state.newQuantity){
+        const flkty = new Flickity( el, {
+          cellAlign: 'left',
+          contain: true,
+          draggable: false
+        })
+      }
  
-      if(el.classList.contains('flickity-enabled')) return
- 
-      const flkty = new Flickity( el, {
-        cellAlign: 'left',
-        contain: true
-      })
+      //if(el.classList.contains('flickity-enabled')) return
     })
   }
 
